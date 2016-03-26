@@ -1,0 +1,53 @@
+String[] headlines = {
+  "Melfie Lynne Cabrillos,", 
+  "Though it seems unlikely",
+  "I love you with all my heart",
+  "I love you with my soul",
+  "I know you don't believe in me",
+  "but trust me for I know",
+  "My love is deep",
+  "My love is true",
+  "And it will never fade",
+  "I tell you now,",
+  "and it is true...",
+  "Darling I LOVE YOU!",
+  };
+
+PFont f;  // Global font variable
+float x;  // horizontal location of headline
+int index = 0;
+PImage img;  // Declare a variable of type PImage
+
+void setup() {
+  size(480,640);
+   f = createFont("Lucida Calligraphy",16,true);  
+  // Initialize headline offscreen to the right 
+  x = width; 
+  // Make a new instance of a PImage by loading an image file
+  img = loadImage("2.jpg");
+}
+
+void draw() {
+  background(255);
+  fill(0);
+   // Draw the image to the screen at coordinate (0,0)
+  image(img,0,0);
+  
+  // Display headline at x  location
+  textFont(f,16);        
+  textAlign(LEFT);
+  text(headlines[index],x,180); 
+
+  // Decrement x
+  x = x - 3;
+
+  // If x is less than the negative width, 
+  // then it is off the screen
+  float w = textWidth(headlines[index]);
+  if (x < -w) {
+    x = width; 
+    index = (index + 1) % headlines.length;
+    
+   
+  }
+}
